@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Aplikasi Vue #3: Latihan Directive pada Vue</title>
+
+  <!-- Menyisipkan Vuejs dari CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+
+  <!-- elemen kontainer untuk aplikasi -->
+  <div id="app">
+    <div>
+      <input type="url" v-model:value="url" placeholder="Link Gambar" /></br>
+      <input type="text" v-model:value="caption.text" placeholder="Caption untuk image" />
+      <br />
+      Berikan caption pada atribut: 
+      <select v-model:value="caption.attr">
+        <option>title</option>
+        <option>alt</option>
+      </select>
+    </div>
+    <!-- Menggunakan argumen statis dan dinamis -->
+    <img v-bind:src="url" v-bind:[caption.attr]="caption.text" />
+    <p>Caption diberikan pada atribut <code>{{ caption.attr }}</code> dengan isi "{{ caption.text }}"</p>
+  </div>
+
+  <!-- aplikasi Vue -->
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        url: "vue.png",
+        caption: {
+          attr: "title",
+          text: "Hello ini adalah caption"
+        }
+      }
+    })
+  </script>
+</body>
+</html>

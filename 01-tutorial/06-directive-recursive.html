@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Aplikasi Vue #6: Direktif untuk Perulangan</title>
+  <!-- Menyisipkan Vuejs dari CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+
+  <!-- elemen kontainer untuk aplikasi -->
+  <div id="app">
+    <h2>Daftar Pekerjaan:</h2>
+    <input type="text" placeholder="tambah pekerjaan" v-model:value="newTask" />
+    <button @click="addTask">Add</button>
+    <ul>
+        <li v-for="item in todolists">
+            <s v-if="item.done">{{ item.task }}</s>
+            <b v-else>{{ item.task }}</b>
+        </li>
+    </ul>
+  </div>
+
+  <script>
+    var app = new Vue({
+      el: "#app",
+      data: {
+        newTask: "",
+        todolists: [
+            {'done': true, task: "Belajar Vuejs"},
+            {'done': false, task: "Siram tanaman di kebun"},
+            {'done': false, task: "Beli bibit kopi"},
+        ]
+      },
+      methods: {
+          addTask: function(){
+              this.todolists.push({'done': false, 'task': this.newTask});
+              this.newTask = "";
+          }
+      }
+    })
+  </script>
+</body>
+
+</html>
